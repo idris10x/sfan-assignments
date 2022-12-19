@@ -47,13 +47,13 @@ columns are categorical and I used `imputation_type = 'simple'` and
 `categorical_imputation = 'constant'` to fill `“not_available”` for missing observations.
 * Multicollinearity: there are high correlations between `coding_experience` and
 `ml_experience`, `job_title` and `employer_industry` which introduces multicollinearity into
-the data. We removed multicollinearity by using the `remove_multicollinearity` and
-setting threshold to 0.4.
+the data. I removed multicollinearity by using the `remove_multicollinearity` and
+`multicollinearity_threshold = 0.4`.
 * High Cardinality: country has high cardinality with 58 unique values. I handled
 this using `high_cardinality_features` and `high_cardinality_method = 'frequency'` in the
 setup.
 * Fix Imbalance: The target class salary is imbalanced with lots of observations in the
-first bucket. We fixed this using the `fix_imbalance`. When set to True, SMOTE
+first bucket. I fixed this using the `fix_imbalance`. When set to True, SMOTE
 (Synthetic Minority Over-sampling Technique) is used as a default method for
 resampling.
 
@@ -71,6 +71,8 @@ Light Gradient Boosting Machine is the best model with highest recall and AUC, h
 
 ## Section 3 - Model Implementation and Tuning
 
+Based on the model results we have, Extra Trees Classifier appears to be the best choice with the highest recall and AUC of 73%.
+
 In order to find the best hyperparameters for the model, I used the `tune_model` function which loops through pre-defined hyper-parameter grids to find the best parameters for our model through 10 fold cross-validation. 
 PyCaret uses the standard Randomized-Grid search to iterate through the parameters. 
 Within the `tune_model` function, PyCaret also allows us to specify the metric I want to optimize. 
@@ -87,4 +89,4 @@ set, `finalize_model` was explicitly used.
 I used `predict_model()` to generate prediction and the score (probability attached to
 prediction). The prediction dataframe also contains all the features and initial salary bucket
 for each observation. Out of the 5 columns shown in the prediction dataframe, our predicted
-one label correctly.
+one label correctly. This represents 20% and is quite low. The model may be improved by engineering new features or reducing the features used for prediction.
