@@ -8,14 +8,14 @@ interactive and intuitive way.
 To run the visualisation, you will need to have Python 3 and the following dependencies
 installed:
 
-streamlit
-numpy
-pandas
-plotly_express
-plotnine
-scipy
-pingouin
-statistics
+* streamlit
+* numpy
+* pandas
+* plotly_express
+* plotnine
+* scipy
+* pingouin
+* statistics
 
 You can install these dependencies using pip:
 
